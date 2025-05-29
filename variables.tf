@@ -71,7 +71,6 @@ variable "alert_display_name" {
   type        = string
   description = "A human-friendly name for the alert policy. Used for monitoring display_name."
   default     = ""
-  
 }
 
 variable "auth_username" {
