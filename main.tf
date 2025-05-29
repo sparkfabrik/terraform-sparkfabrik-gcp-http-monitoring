@@ -2,8 +2,9 @@
 # LOCALS
 # ------
 locals {
-  suffix                         = var.uptime_monitoring_path != "/" ? var.uptime_monitoring_path : ""
-  uptime_monitoring_display_name = var.uptime_monitoring_display_name != "" ? "${var.uptime_monitoring_display_name} - ${var.uptime_monitoring_host}${local.suffix}" : "${var.uptime_monitoring_host}${local.suffix}"
+  suffix                          = var.uptime_monitoring_path != "/" ? var.uptime_monitoring_path : ""
+  uptime_monitoring_display_name  = var.uptime_monitoring_display_name != "" ? "${var.uptime_monitoring_display_name} - ${var.uptime_monitoring_host}${local.suffix}" : "${var.uptime_monitoring_host}${local.suffix}"
+  alert_display_name              = var.alert_display_name != "" ? var.alert_display_name : "Failure of uptime check for: ${local.uptime_monitoring_display_name}"
 }
 
 # Fetch information from Kubernetes secret if they are needed
@@ -47,6 +48,7 @@ resource "google_monitoring_uptime_check_config" "https_uptime" {
     port         = "443"
     use_ssl      = true
     validate_ssl = true
+    headers      = var.uptime_monitoring_headers
 
     dynamic "auth_info" {
       for_each = (length(local.final_username) > 0 && length(local.final_password) > 0) ? [1] : []
@@ -92,7 +94,7 @@ resource "google_monitoring_uptime_check_config" "https_uptime" {
 # Alerts policy
 # -------------
 resource "google_monitoring_alert_policy" "failure_alert" {
-  display_name = "Failure of uptime check for: ${local.uptime_monitoring_display_name}"
+  display_name = local.alert_display_name
   combiner     = "OR"
 
   conditions {
@@ -111,7 +113,7 @@ resource "google_monitoring_alert_policy" "failure_alert" {
         group_by_fields      = []
       }
     }
-    display_name = "Failure of uptime check for: ${local.uptime_monitoring_display_name}"
+    display_name = local.alert_display_name
   }
 
   user_labels = var.uptime_alert_user_labels

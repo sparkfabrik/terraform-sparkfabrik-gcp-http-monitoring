@@ -28,6 +28,7 @@ This module is provided without any kind of warranty and is GPL3 licensed.
 |------|-------------|------|---------|:--------:|
 | <a name="input_accepted_response_status_classes"></a> [accepted\_response\_status\_classes](#input\_accepted\_response\_status\_classes) | Check will only pass if the HTTP response status code is in this set of status classes (combined with the set of status values). Possible values: STATUS\_CLASS\_1XX, STATUS\_CLASS\_2XX, STATUS\_CLASS\_3XX, STATUS\_CLASS\_4XX, STATUS\_CLASS\_5XX, STATUS\_CLASS\_ANY | `set(string)` | `[]` | no |
 | <a name="input_accepted_response_status_values"></a> [accepted\_response\_status\_values](#input\_accepted\_response\_status\_values) | Check will only pass if the HTTP response status code is in this set of status values (combined with the set of status classes). | `set(number)` | `[]` | no |
+| <a name="input_alert_display_name"></a> [alert\_display\_name](#input\_alert\_display\_name) | A human-friendly name for the alert policy. Used for monitoring display\_name. | `string` | `""` | no |
 | <a name="input_alert_notification_channels"></a> [alert\_notification\_channels](#input\_alert\_notification\_channels) | Identifies the notification channels to which notifications should be sent when incidents are opened or closed. The syntax of the entries in this field is projects/[PROJECT\_ID]/notificationChannels/[CHANNEL\_ID] | `list(string)` | n/a | yes |
 | <a name="input_alert_threshold_duration"></a> [alert\_threshold\_duration](#input\_alert\_threshold\_duration) | The amount of time that a time series must violate the threshold to be considered failing. Currently, only values that are a multiple of a minute--e.g., 0, 60, 120, or 300 seconds--are supported. | `string` | `"60s"` | no |
 | <a name="input_alert_threshold_value"></a> [alert\_threshold\_value](#input\_alert\_threshold\_value) | A value against which to compare the time series. | `number` | `1` | no |
@@ -43,6 +44,7 @@ This module is provided without any kind of warranty and is GPL3 licensed.
 | <a name="input_uptime_check_regions"></a> [uptime\_check\_regions](#input\_uptime\_check\_regions) | The list of regions from which the check will be run. Some regions contain one location, and others contain more than one. If this field is specified, enough regions to include a minimum of 3 locations must be provided, or an error message is returned. Not specifying this field will result in uptime checks running from all regions. | `list(string)` | <pre>[<br>  "USA_VIRGINIA",<br>  "EUROPE",<br>  "ASIA_PACIFIC"<br>]</pre> | no |
 | <a name="input_uptime_check_timeout"></a> [uptime\_check\_timeout](#input\_uptime\_check\_timeout) | The maximum amount of time to wait for the request to complete (must be between 1 and 60 seconds). | `string` | `"10s"` | no |
 | <a name="input_uptime_monitoring_display_name"></a> [uptime\_monitoring\_display\_name](#input\_uptime\_monitoring\_display\_name) | A human-friendly name for the uptime check configuration. Used for monitoring display\_name. | `string` | `""` | no |
+| <a name="input_uptime_monitoring_headers"></a> [uptime\_monitoring\_headers](#input\_uptime\_monitoring\_headers) | A set of key/value header pairs to send in the HTTP request to the URL. | `map(string)` | `{}` | no |
 | <a name="input_uptime_monitoring_host"></a> [uptime\_monitoring\_host](#input\_uptime\_monitoring\_host) | A hostname to monitor (without protocol, example: 'www.my-site.com'). | `string` | n/a | yes |
 | <a name="input_uptime_monitoring_path"></a> [uptime\_monitoring\_path](#input\_uptime\_monitoring\_path) | The path to the page to run the check against. | `string` | `"/"` | no |
 ## Outputs
@@ -64,5 +66,4 @@ This module is provided without any kind of warranty and is GPL3 licensed.
 ## Modules
 
 No modules.
-
 <!-- END_TF_DOCS -->

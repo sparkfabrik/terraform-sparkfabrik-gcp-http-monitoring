@@ -38,6 +38,18 @@ variable "uptime_check_regions" {
   default     = ["USA_VIRGINIA", "EUROPE", "ASIA_PACIFIC"]
 }
 
+variable "uptime_alert_user_labels" {
+  type        = map(string)
+  description = "This field is intended to be used for labelling the SSL alerts. Labels and values can contain only lowercase letters, numerals, underscores, and dashes. Keys must begin with a letter."
+  default     = {}
+}
+
+variable "uptime_monitoring_headers" {
+  type        = map(string)
+  description = "A set of key/value header pairs to send in the HTTP request to the URL."
+  default     = {}
+}
+
 variable "alert_threshold_duration" {
   type        = string
   description = "The amount of time that a time series must violate the threshold to be considered failing. Currently, only values that are a multiple of a minute--e.g., 0, 60, 120, or 300 seconds--are supported."
@@ -50,15 +62,15 @@ variable "alert_threshold_value" {
   default     = 1
 }
 
-variable "uptime_alert_user_labels" {
-  type        = map(string)
-  description = "This field is intended to be used for labelling the SSL alerts. Labels and values can contain only lowercase letters, numerals, underscores, and dashes. Keys must begin with a letter."
-  default     = {}
-}
-
 variable "alert_notification_channels" {
   type        = list(string)
   description = "Identifies the notification channels to which notifications should be sent when incidents are opened or closed. The syntax of the entries in this field is projects/[PROJECT_ID]/notificationChannels/[CHANNEL_ID]"
+}
+
+variable "alert_display_name" {
+  type        = string
+  description = "A human-friendly name for the alert policy. Used for monitoring display_name."
+  default     = ""
 }
 
 variable "auth_username" {

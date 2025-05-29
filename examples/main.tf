@@ -1,11 +1,16 @@
 locals {
   gcp_project = "project_id"
-  hosts_list = [
-    "www.acme-site.it",
-    "www2.acme-site.it",
-    "test.acme-site.it",
-    "test2.acme-site.it"
-  ]
+  hosts_list = {
+    "www.acme-site.it" : {},
+    "www2.acme-site.it" : {},
+    "test.acme-site.it" : {},
+    "test2.acme-site.it" : {},
+    "1.2.3.4" : {
+      headers = {
+        "Host" = "www.acme-site.it"
+      }
+    }
+  }
   notification_channels = [
     google_monitoring_notification_channel.cloud_support_email.name,
     google_monitoring_notification_channel.dev_support_email.name,
@@ -35,10 +40,12 @@ resource "google_monitoring_notification_channel" "dev_support_email" {
 }
 
 module "gcp-http-monitoring" {
-  source                      = "sparkfabrik/gcp-http-monitoring/sparkfabrik"
-  version                     = "~>0.3"
-  for_each                    = toset(local.hosts_list)
-  uptime_monitoring_host      = each.value
+  source   = "sparkfabrik/gcp-http-monitoring/sparkfabrik"
+  version  = "~>1.0"
+  for_each = local.hosts_list
+
+  uptime_monitoring_host      = each.key
+  uptime_monitoring_headers   = try(each.value.headers, {})
   gcp_project                 = local.gcp_project
   alert_threshold_duration    = "300s"
   alert_notification_channels = local.notification_channels
