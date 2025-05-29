@@ -4,7 +4,7 @@
 locals {
   suffix                          = var.uptime_monitoring_path != "/" ? var.uptime_monitoring_path : ""
   uptime_monitoring_display_name  = var.uptime_monitoring_display_name != "" ? "${var.uptime_monitoring_display_name} - ${var.uptime_monitoring_host}${local.suffix}" : "${var.uptime_monitoring_host}${local.suffix}"
-  alert_display_name              = var.alert_display_name != "" ? var.alert_display_name :  "Failure of uptime check for: ${local.uptime_monitoring_display_name}"
+  alert_display_name              = var.alert_display_name != "" ? var.alert_display_name : "Failure of uptime check for: ${local.uptime_monitoring_display_name}"
 }
 
 # Fetch information from Kubernetes secret if they are needed
