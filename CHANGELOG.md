@@ -13,7 +13,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Removed
 
-- refs platform/board#4071: removed SSL certificate expiration alert configuration. Moved into [terraform-google-services-monitoring](https://github.com/sparkfabrik/terraform-google-services-monitoring) module.
+- refs platform/board#4071: ⚠️ **BREAKING CHANGES** removed SSL certificate expiration alert configuration. Moved into [terraform-google-services-monitoring](https://github.com/sparkfabrik/terraform-google-services-monitoring) module.
 
 ## [1.0.0] - 2024-07-09
 
