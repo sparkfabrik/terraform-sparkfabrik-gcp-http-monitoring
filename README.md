@@ -51,7 +51,6 @@ This module is provided without any kind of warranty and is GPL3 licensed.
 |------|-------------|
 | <a name="output_alert_policy_name"></a> [alert\_policy\_name](#output\_alert\_policy\_name) | n/a |
 | <a name="output_http_uptime_monitoring_name"></a> [http\_uptime\_monitoring\_name](#output\_http\_uptime\_monitoring\_name) | n/a |
-| <a name="output_ssl_alert_policy_names"></a> [ssl\_alert\_policy\_names](#output\_ssl\_alert\_policy\_names) | n/a |
 ## Resources
 
 | Name | Type |
