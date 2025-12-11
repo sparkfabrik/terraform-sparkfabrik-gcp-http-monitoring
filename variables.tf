@@ -107,18 +107,6 @@ variable "auth_k8s_configmap" {
   default     = null
 }
 
-variable "ssl_alert_threshold_days" {
-  type        = list(number)
-  description = "If you configure this list with some numeric values, the module creates alerts for SSL certificate expiration. The values of the list will be used as threshold value in days for the alert."
-  default     = []
-}
-
-variable "ssl_alert_user_labels" {
-  type        = map(string)
-  description = "This field is intended to be used for labelling the SSL alerts. Labels and values can contain only lowercase letters, numerals, underscores, and dashes. Keys must begin with a letter."
-  default     = {}
-}
-
 variable "accepted_response_status_values" {
   description = "Check will only pass if the HTTP response status code is in this set of status values (combined with the set of status classes)."
   type        = set(number)

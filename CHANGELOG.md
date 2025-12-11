@@ -7,6 +7,14 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [1.1.0] - 2025-12-12
+
+[Compare with previous version](https://github.com/sparkfabrik/terraform-sparkfabrik-gcp-http-monitoring/compare/1.0.0...1.1.0)
+
+### Removed
+
+- refs platform/board#4071: removed SSL certificate expiration alert configuration. Moved into [terraform-google-services-monitoring](https://github.com/sparkfabrik/terraform-google-services-monitoring) module.
+
 ## [1.0.0] - 2024-07-09
 
 [Compare with previous version](https://github.com/sparkfabrik/terraform-sparkfabrik-gcp-http-monitoring/compare/0.10.0...1.0.0)
